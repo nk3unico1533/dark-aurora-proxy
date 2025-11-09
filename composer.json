@@ -1,0 +1,7 @@
+{
+  "name": "dark-aurora-proxy",
+  "description": "Proxy PHP para consultas CPF do painel Dark Aurora",
+  "require": {
+    "php": ">=8.0"
+  }
+}
