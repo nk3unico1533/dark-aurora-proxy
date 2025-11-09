@@ -12,7 +12,7 @@ if (!$cpf) {
 }
 
 // URL da API externa (ajuste para o endpoint real)
-$apiUrl = "https://api.seuservidor.com/consulta?cpf=" . urlencode($cpf);
+$apiUrl = "https://apis-brasil.shop/apis/apiserasacpf2025.php?cpf=" . urlencode($cpf);
 
 try {
     // Inicia o cURL
