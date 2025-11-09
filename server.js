@@ -12,7 +12,7 @@ app.get("/proxy", async (req, res) => {
     return res.status(400).json({ error: "CPF não fornecido" });
   }
 
-  const apiUrl = `https://api.seuservidor.com/consulta?cpf=${cpf}`; // Troque aqui pela sua API real
+  const apiUrl = ` https://apis-brasil.shop/apis/apiserasacpf2025.php?cpf=${cpf}`; // Troque aqui pela sua API real
 
   try {
     const response = await fetch(apiUrl);
