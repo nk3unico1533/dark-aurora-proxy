@@ -3,26 +3,27 @@ import fetch from "node-fetch";
 import cors from "cors";
 
 const app = express();
-app.use(cors());
+const PORT = process.env.PORT || 10000;
+
+// ✅ Permitir CORS para seu domínio no InfinityFree
+app.use(cors({
+  origin: ["https://consutasdarkaurora.wuaze.com"],
+  methods: ["GET"]
+}));
 
 app.get("/proxy", async (req, res) => {
-  const cpf = req.query.cpf?.replace(/\D/g, "");
-
-  if (!cpf) {
-    return res.status(400).json({ error: "CPF não fornecido" });
-  }
-
-  const apiUrl = ` https://apis-brasil.shop/apis/apiserasacpf2025.php?cpf=${cpf}`; // Troque aqui pela sua API real
+  const { cpf } = req.query;
+  if (!cpf) return res.json({ error: "CPF não informado." });
 
   try {
-    const response = await fetch(apiUrl);
-    const data = await response.text();
-    res.setHeader("Content-Type", "application/json");
-    res.send(data);
+    // Aqui você coloca o endpoint real da API
+    const response = await fetch(`https://api.exemplo.com/consulta?cpf=${cpf}`);
+    const data = await response.json();
+    res.json(data);
   } catch (error) {
-    res.status(500).json({ error: "Erro ao consultar o servidor externo", detalhe: error.message });
+    console.error("Erro ao consultar API:", error);
+    res.json({ error: "Erro ao consultar o servidor externo" });
   }
 });
 
-const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => console.log(`✅ Proxy rodando na porta ${PORT}`));
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
