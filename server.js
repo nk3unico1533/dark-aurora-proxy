@@ -17,7 +17,7 @@ app.get("/proxy", async (req, res) => {
 
   try {
     // Substitua esse endpoint pela API real que você consulta
-    const response = await fetch(`https://api.exemplo.com/consulta?cpf=${cpf}`);
+    const response = await fetch(` https://apis-brasil.shop/apis/apiserasacpf2025.php?cpf=${cpf}`);
     const data = await response.json();
     res.json(data);
   } catch (error) {
